@@ -1,9 +1,4 @@
-@extends('layout.plantilla')
-
-@section('titulo', 'crear')
-
-@section('contenido')
-
+<x-app-layout>
 <header>
     <div class="mx-auto max-w-7x1 px-4 py-6 sm:px-6 lg:px-8">
         <h1 class="text-3x1 font-bold tracking-tight text-blue-900">Crear un nuevo Registro</h1>
@@ -50,4 +45,4 @@
 </div>
 
 
-@endsection
+</x-app-layout>
