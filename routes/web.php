@@ -17,7 +17,21 @@ use App\Http\Controllers\productoController;
 
 Route::get('/', inicioController::class);
 
-
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+    ])->group(function () {
+    Route::controller(productoController::class)->group(function(){
+    Route::get('producto', 'index')->name('producto.index');
+    route::get('producto/crear', 'crear')->name('producto.crear');
+    Route::get('producto/{nombre}','mostrar')->name('producto.mostrar');
+    Route::post('producto', 'store')->name('producto.store');
+    Route::get('producto/{id}/edit', 'editar')->name('producto.editar');
+    Route::put('producto/{producto}', 'update')->name('producto.update');
+    Route::delete('producto/{id}', 'borrar')->name('producto.borrar');
+    });
+    });
 
 
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])->group(function () {

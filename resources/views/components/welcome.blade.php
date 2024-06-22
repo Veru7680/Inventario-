@@ -1,32 +1,56 @@
-<div class="p-6 lg:p-8 bg-white border-b border-gray-200">
-    <x-application-logo class="block h-12 w-auto" />
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <!-- Aquí va la sección de head con los metadatos, estilos y scripts -->
+</head>
+<body class="font-sans antialiased">
+    <!-- Aquí va el contenido principal de la página -->
+    <div class="p-6 lg:p-8 bg-white border-b border-gray-200">
+        <x-application-logo class="block h-12 w-auto" />
 
-    <h1 class="mt-8 text-2xl font-medium text-gray-900">
-        Welcome to your Jetstream application!
-    </h1>
+        <h1 class="mt-8 text-2xl font-medium text-gray-900">
+            Welcome to your Jetstream application!
+        </h1>
 
-    <p class="mt-6 text-gray-500 leading-relaxed">
-        Laravel Jetstream provides a beautiful, robust starting point for your next Laravel application. Laravel is designed
-        to help you build your application using a development environment that is simple, powerful, and enjoyable. We believe
-        you should love expressing your creativity through programming, so we have spent time carefully crafting the Laravel
-        ecosystem to be a breath of fresh air. We hope you love it.
-    </p>
-</div>
-
-<div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 p-6 lg:p-8">
-    <div>
-        <div class="flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="w-6 h-6 stroke-gray-400">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
-            </svg>
-            <h2 class="ms-3 text-xl font-semibold text-gray-900">
-                <a href="https://laravel.com/docs">Documentation</a>
-            </h2>
-        </div>
-
-        <p class="mt-4 text-gray-500 text-sm leading-relaxed">
-            Laravel has wonderful documentation covering every aspect of the framework. Whether you're new to the framework or have previous experience, we recommend reading all of the documentation from beginning to end.
+        <p class="mt-6 text-gray-500 leading-relaxed">
+            Laravel Jetstream provides a beautiful, robust starting point for your next Laravel application. Laravel is designed
+            to help you build your application using a development environment that is simple, powerful, and enjoyable. We believe
+            you should love expressing your creativity through programming, so we have spent time carefully crafting the Laravel
+            ecosystem to be a breath of fresh air. We hope you love it.
         </p>
+    </div>
+
+    <!-- Aquí va el menú responsivo -->
+    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{route('producto.crear')}}" :active="request()->routeIs('producto.crear')">
+                Registro
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{route('producto.index')}}" :active="request()->routeIs('producto.index')">
+                Productos
+            </x-responsive-nav-link>
+        </div>
+    </div>
+
+    <!-- Aquí va el resto del contenido de la página -->
+    <div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 p-6 lg:p-8">
+        <div>
+            <div class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="w-6 h-6 stroke-gray-400">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                </svg>
+                <h2 class="ms-3 text-xl font-semibold text-gray-900">
+                    <a href="https://laravel.com/docs">Documentation</a>
+                </h2>
+            </div>
+
+            <p class="mt-4 text-gray-500 text-sm leading-relaxed">
+                Laravel has wonderful documentation covering every aspect of the framework. Whether you're new to the framework or have previous experience, we recommend reading all of the documentation from beginning to end.
+            </p>
+
 
         <p class="mt-4 text-sm">
             <a href="https://laravel.com/docs" class="inline-flex items-center font-semibold text-indigo-700">
@@ -85,12 +109,23 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
             </svg>
             <h2 class="ms-3 text-xl font-semibold text-gray-900">
-                Authentication
-            </h2>
-        </div>
+            Authentication
+                </h2>
+            </div>
 
-        <p class="mt-4 text-gray-500 text-sm leading-relaxed">
-            Authentication and registration views are included with Laravel Jetstream, as well as support for user email verification and resetting forgotten passwords. So, you're free to get started with what matters most: building your application.
-        </p>
+            <p class="mt-4 text-gray-500 text-sm leading-relaxed">
+                Authentication and registration views are included with Laravel Jetstream, as well as support for user email verification and resetting forgotten passwords. So, you're free to get started with what matters most: building your application.
+            </p>
+        </div>
     </div>
+    <!-- Logo -->
+<div class="shrink-0 flex items-center">
+<a href="{{ route('dashboard') }}">
+<x-application-mark class="block h-9 w-auto" />
+</a>
 </div>
+
+</div>
+</body>
+
+</html>

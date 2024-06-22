@@ -58,11 +58,12 @@ return [
     */
 
     'features' => [
-        // Features::termsAndPrivacyPolicy(),
-        // Features::profilePhotos(),
-        // Features::api(),
-        // Features::teams(['invitations' => true]),
-        Features::accountDeletion(),
+    Features::termsAndPrivacyPolicy(),
+    
+    Features::profilePhotos(),// para habilitar la opcion de subir una foto
+    // Features::api(),
+    // Features::teams(['invitations' => true]),
+    Features::accountDeletion(),
     ],
 
     /*
