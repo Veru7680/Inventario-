@@ -28,7 +28,7 @@
                 <input type="text" name="descripcion" value="{{$producto->descripcion}}" class="p-3 mt-2 mb-4 w-full bg-slate-200 rounded">
                 <label class="uppercase text-sm font-bold opacity-70">Categoria</label>
                 <input type="text" name="categoria" value="{{$producto->categoria}}" class="p-3 mt-2 mb-4 w-full bg-slate-200 rounded">
-            
+
                 <label class="uppercase text-sm font-bold opacity-70">Categoria_tabla</label>
                 <select name="categoria_id" class="p-3 mt-2 mb-4 w-full bg-slate-200 rounded" required>
                 <option value="{{$categoria_actual->id}}">{{$categoria_actual->nombre}}</option>

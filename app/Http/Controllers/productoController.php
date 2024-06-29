@@ -58,6 +58,9 @@ class productoController extends Controller
       return view("productos.editar", compact('producto','categorias','categoria_actual'));
     }
 
+
+    
+
     public function update(Request $request ,producto $producto){
         // $p$pro=new Producto();
         $producto->nombre=$request->nombre;
