@@ -65,10 +65,18 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
     });
     });
 
-    
+
+ 
+
     Route::controller(CategoriaController::class)->group(function () {
         Route::get('categoria', 'principal')->name('categoria.principal');
         Route::get('categoria/crear', 'crear')->name('categoria.crear');
-        Route::get('categoria/{cat}', 'mostrar')->name('categoria.mostrar');
+        Route::get('categoria/{id}', 'mostrar')->name('categoria.mostrar');
+        Route::post('categoria', 'store')->name('categoria.store');
+        Route::get('categoria/{id}/editar', 'editar')->name('categoria.editar');
+        Route::put('categoria/{id}', 'update')->name('categoria.update');
+        Route::delete('categoria/{id}', 'borrar')->name('categoria.borrar');
+        Route::get('categoria/{id}/activar', 'activar')->name('categoria.activar');
+        Route::get('categoria/{id}/desactivar', 'desactivar')->name('categoria.desactivar');
     });
     

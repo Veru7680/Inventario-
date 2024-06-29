@@ -27,7 +27,7 @@
 
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link href="{{ route('producto.crear') }}" :active="request()->routeIs('categoria.crear')">
+                        <x-nav-link href="{{ route('producto.crear') }}" :active="request()->routeIs('producto.crear')">
                         {{ __('Registrar Producto') }}
                         </x-nav-link>
                 </div>
@@ -36,10 +36,12 @@
                         <x-nav-link href="{{ route('categoria.principal') }}" :active="request()->routeIs('categoria.principal')">
                         {{ __('Mostrar categoría') }}
                         </x-nav-link>
-
-
                 </div>
- 
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link href="{{ route('categoria.crear') }}" :active="request()->routeIs('categoria.crear')">
+                        {{ __('Registrar categoría') }}
+                        </x-nav-link>
+                </div>
 
             </div>
 
