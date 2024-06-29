@@ -20,28 +20,24 @@
 
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('producto.principal') }}" :active="request()->routeIs('producto.principal')">
+                         <x-nav-link href="{{ route('producto.principal') }}" :active="request()->routeIs('producto.principal')">
                         {{ __('Mostrar Producto') }}
-                    </x-nav-link>
+                        </x-nav-link>
                 </div>
 
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('producto.crear') }}" :active="request()->routeIs('producto.crear')">
+                        <x-nav-link href="{{ route('producto.crear') }}" :active="request()->routeIs('categoria.crear')">
                         {{ __('Registrar Producto') }}
-                    </x-nav-link>
+                        </x-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('producto.principal') }}" :active="request()->routeIs('producto.principal')">
-                        {{ __('Mostrar Categoria') }}
-                    </x-nav-link>
-                </div>
-               
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('producto.crear') }}" :active="request()->routeIs('producto.crear')">
-                        {{ __('Registrar Categoria') }}
-                    </x-nav-link>
+                        <x-nav-link href="{{ route('categoria.principal') }}" :active="request()->routeIs('categoria.principal')">
+                        {{ __('Mostrar categoría') }}
+                        </x-nav-link>
+
+
                 </div>
  
 

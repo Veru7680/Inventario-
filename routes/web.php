@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\inicioController;
 use App\Http\Controllers\productoController;
-
+use App\Http\Controllers\CategoriaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,6 +33,9 @@ Route::middleware([
     });
     });
 
+  
+
+    
 
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])->group(function () {
  Route::get('/dashboard', function () {
@@ -60,7 +63,12 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
         route::get('desactiva/{id}','desactivaproducto')->name('desactivaprod');
         route::get('activa/{id}','activaproducto')->name('activaprod');
     });
+    });
+
     
-
-});
-
+    Route::controller(CategoriaController::class)->group(function () {
+        Route::get('categoria', 'principal')->name('categoria.principal');
+        Route::get('categoria/crear', 'crear')->name('categoria.crear');
+        Route::get('categoria/{cat}', 'mostrar')->name('categoria.mostrar');
+    });
+    
