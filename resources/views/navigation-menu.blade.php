@@ -21,17 +21,29 @@
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="{{ route('producto.principal') }}" :active="request()->routeIs('producto.principal')">
-                        {{ __('Producto') }}
+                        {{ __('Mostrar Producto') }}
                     </x-nav-link>
                 </div>
 
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="{{ route('producto.crear') }}" :active="request()->routeIs('producto.crear')">
-                        {{ __('Registrar') }}
+                        {{ __('Registrar Producto') }}
                     </x-nav-link>
                 </div>
 
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link href="{{ route('producto.principal') }}" :active="request()->routeIs('producto.principal')">
+                        {{ __('Mostrar Categoria') }}
+                    </x-nav-link>
+                </div>
+               
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link href="{{ route('producto.crear') }}" :active="request()->routeIs('producto.crear')">
+                        {{ __('Registrar Categoria') }}
+                    </x-nav-link>
+                </div>
+ 
 
             </div>
 
