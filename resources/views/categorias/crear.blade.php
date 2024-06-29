@@ -1,7 +1,7 @@
 <x-app-layout>
     <header>
         <div class="mx-auto max-w-7x1 px-4 py-6 sm:px-6 lg:px-8">
-            <h1 class="text-3x1 font-bold tracking-tight text-blue-900">Crear un nuevo Registro Ctaegoria</h1>
+            <h1 class="text-3x1 font-bold tracking-tight text-blue-900">Crear un nuevo Registro Categoria</h1>
         </div>
     </header>
     <!-- component -->
