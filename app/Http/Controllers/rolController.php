@@ -9,9 +9,10 @@ class rolController extends Controller
 {
     public function principal()
     {
-        $roles = Role::all();
+        $roles = Role::paginate(5); // Por ejemplo, 10 roles por página
         return view('roles.principal', ['roles' => $roles]);
     }
+    
 
     public function crear()
     {
@@ -24,14 +25,18 @@ class rolController extends Controller
         return view('roles.mostrar', compact('role'));
     }
 
-    public function store(Request $request)
-    {
-        $role = new Role();
-        $role->nombre = $request->nombre;
-        $role->save();
+   public function store(Request $request)
+{
+    $request->validate([
+        'nombre' => 'required|string|max:255',
+    ]);
 
-        return redirect()->route('rol.principal');
-    }
+    $rol = new Role();
+    $rol->nombre = $request->nombre;
+    $rol->save();
+
+    return redirect()->route('rol.principal');
+}
 
     public function editar(Role $role)
     {
