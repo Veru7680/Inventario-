@@ -43,6 +43,17 @@
                         </x-nav-link>
                 </div>
 
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link href="{{ route('rol.principal') }}" :active="request()->routeIs('rol.principal')">
+                        {{ __('Mostrar Rol') }}
+                        </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link href="{{ route('rol.crear') }}" :active="request()->routeIs('rol.crear')">
+                        {{ __('Registrar Rol') }}
+                        </x-nav-link>
+                </div>
+
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ms-6">
