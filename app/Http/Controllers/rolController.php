@@ -9,8 +9,10 @@ class rolController extends Controller
 {
     public function principal()
     {
-        $roles = Role::paginate(5); // Por ejemplo, 10 roles por página
+        $roles = Role::withTrashed()->paginate(5); // Por ejemplo, 10 roles por página
         return view('roles.principal', ['roles' => $roles]);
+
+       
     }
     
 
@@ -51,27 +53,25 @@ class rolController extends Controller
         return redirect()->route('rol.principal');
     }
 
-    public function borrar($id)
-    {
-        $role = Role::find($id);
-        $role->delete();
-
-        return redirect()->route('rol.principal');
-    }
-
     public function activar($id)
-    {
-        $role = Role::withTrashed()->find($id);
-        $role->restore();
+{
+    $role = Role::withTrashed()->findOrFail($id); // Buscar con registros eliminados
+    $role->restore(); // Restaurar el registro eliminado lógicamente
+    return redirect()->route('rol.principal');
+}
 
-        return redirect()->route('rol.principal');
-    }
+public function borrar($id)
+{
+    $role = Role::withTrashed()->findOrFail($id); // Buscar con registros eliminados
+    $role->forceDelete(); // Eliminar permanentemente el registro
+    return redirect()->route('rol.principal');
+}
 
-    public function desactivar($id)
-    {
-        $role = Role::find($id);
-        $role->delete();
+public function desactivar($id)
+{
+    $role = Role::findOrFail($id); // Buscar el registro
+    $role->delete(); // Eliminar lógicamente el registro
+    return redirect()->route('rol.principal');
+}
 
-        return redirect()->route('rol.principal');
-    }
 }

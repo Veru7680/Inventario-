@@ -19,37 +19,52 @@
                 </tr>
             </thead>
             <tbody class="block md:table-row-group">
-                @foreach ($roles as $rol)
-                    <tr class="bg-gray-300 border border-grey-500 md:border-none block md:table-row">
-                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                            <span class="inline-block w-1/3 md:hidden font-bold">ID</span>{{ $rol->id }}
-                        </td>
-                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                            <span class="inline-block w-1/3 md:hidden font-bold">Nombre</span>
-                            <a href="{{ route('rol.mostrar', $rol->id) }}">{{ $rol->nombre }}</a>
-                        </td>
-                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                            <span class="inline-block w-1/3 md:hidden font-bold">Operaciones</span>
 
-                            <!-- Ver -->
-                            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 border border-green-500 rounded">
-                                <a href="{{ route('rol.mostrar', $rol->id) }}" class="text-white">Ver</a>
-                            </button>
 
-                            <!-- Editar -->
-                            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">
-                                <a href="{{ route('rol.editar', $rol->id) }}" class="text-white">Editar</a>
-                            </button>
+                                                @foreach ($roles as $rol)
+                        <tr class="bg-gray-300 border border-grey-500 md:border-none block md:table-row">
+                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                                <span class="inline-block w-1/3 md:hidden font-bold">ID</span>{{ $rol->id }}
+                            </td>
+                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                                <span class="inline-block w-1/3 md:hidden font-bold">Nombre</span>
+                                <a href="{{ route('rol.mostrar', $rol->id) }}">{{ $rol->nombre }}</a>
+                            </td>
+                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                                <span class="inline-block w-1/3 md:hidden font-bold">Operaciones</span>
+                                <!-- Ver -->
+                                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 border border-green-500 rounded">
+                                    <a href="{{ route('rol.mostrar', $rol->id) }}" class="text-white">Ver</a>
+                                </button>
+                                <!-- Editar -->
+                                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">
+                                    <a href="{{ route('rol.editar', $rol->id) }}" class="text-white">Editar</a>
+                                </button>
+                                <!-- Activar / Desactivar -->
+                                @if ($rol->deleted_at)
+                                    <!-- Activar -->
+                                    <button class="bg-green-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-green-500 rounded">
+                                        <a href="{{ route('rol.activar', $rol->id) }}" class="text-white">Activar</a>
+                                    </button>
+                                    <!-- Borrar (permanente) -->
+                                    <form action="{{ route('rol.borrar', $rol->id) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded" value="Borrar" onclick="return confirm('¿Desea eliminar el registro: {{ $rol->nombre }}?');"/>
+                                    </form>
+                                @else
+                                    <!-- Desactivar -->
+                                    <button class="bg-pink-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-pink-500 rounded">
+                                        <a href="{{ route('rol.desactivar', $rol->id) }}" class="text-white">Desactivar</a>
+                                    </button>
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
 
-                            <!-- Borrar -->
-                            <form action="{{ route('rol.borrar', $rol->id) }}" method="POST" style="display:inline;">
-                                @csrf
-                                @method('DELETE')
-                                <input type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded" value="Borrar" onclick="return confirm('¿Desea eliminar el registro: {{ $rol->nombre }}?');"/>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
+
+
+
             </tbody>
         </table>
     </div>
