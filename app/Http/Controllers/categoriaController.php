@@ -9,8 +9,9 @@ class CategoriaController extends Controller
 {
     public function principal()
     {
-        $categorias = Categoria::paginate(4); // Puedes ajustar el número de elementos por página
+        $categorias = Categoria::withTrashed()->paginate(4); // Puedes ajustar el número de elementos por página
         return view('categorias.principal', ['categorias' => $categorias]);
+
     }
 
     public function crear()
