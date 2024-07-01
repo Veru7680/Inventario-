@@ -5,73 +5,84 @@ namespace App\Http\Controllers;
 use App\Models\Role;
 use Illuminate\Http\Request;
 
-class rolController extends Controller
+class RolController extends Controller
 {
     public function principal()
     {
-        $roles = Role::withTrashed()->paginate(5); // Por ejemplo, 10 roles por página
+        $roles = Role::withTrashed()->paginate(4); // Puedes ajustar el número de elementos por página
         return view('roles.principal', ['roles' => $roles]);
-
-       
     }
-    
 
     public function crear()
     {
         return view('roles.crear');
     }
 
+    public function store(Request $request)
+    {
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+        ]);
+
+        Role::create([
+            'nombre' => $request->nombre,
+        ]);
+
+        return redirect()->route('rol.principal')->with('success', 'Rol creado exitosamente.');
+    }
+
     public function mostrar($id)
     {
-        $role = Role::find($id);
-        return view('roles.mostrar', compact('role'));
+        $rol = Role::find($id);
+        return view('roles.mostrar', compact('rol'));
     }
 
-   public function store(Request $request)
+    
+
+    public function editar($id)
 {
-    $request->validate([
-        'nombre' => 'required|string|max:255',
-    ]);
-
-    $rol = new Role();
-    $rol->nombre = $request->nombre;
-    $rol->save();
-
-    return redirect()->route('rol.principal');
+    $role = Role::findOrFail($id);
+    return view('roles.editar', compact('role'));
 }
 
-    public function editar(Role $role)
+    public function update(Request $request, $id)
     {
-        return view('roles.editar', compact('role'));
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+        ]);
+
+        $rol = Role::findOrFail($id);
+        $rol->update([
+            'nombre' => $request->nombre,
+        ]);
+
+        return redirect()->route('rol.principal')->with('success', 'Rol actualizado exitosamente.');
     }
 
-    public function update(Request $request, Role $role)
+    public function borrar($id)
     {
-        $role->nombre = $request->nombre;
-        $role->save();
+        $rol = Role::withTrashed()->find($id);
+        if ($rol) {
+            $rol->forceDelete();
+        }
+        return redirect()->route('rol.principal');
+    }
 
+    public function desactivar($id)
+    {
+        $rol = Role::find($id);
+        if ($rol) {
+            $rol->delete();
+        }
         return redirect()->route('rol.principal');
     }
 
     public function activar($id)
-{
-    $role = Role::withTrashed()->findOrFail($id); // Buscar con registros eliminados
-    $role->restore(); // Restaurar el registro eliminado lógicamente
-    return redirect()->route('rol.principal');
-}
-
-public function borrar($id)
-{
-    $role = Role::withTrashed()->findOrFail($id); // Buscar con registros eliminados
-    $role->forceDelete(); // Eliminar permanentemente el registro
-    return redirect()->route('rol.principal');
-}
-
-public function desactivar($id)
-{
-    $role = Role::findOrFail($id); // Buscar el registro
-    $role->delete(); // Eliminar lógicamente el registro
-    return redirect()->route('rol.principal');
-}
-
+    {
+        $rol = Role::withTrashed()->find($id);
+        if ($rol) {
+            $rol->restore();
+        }
+        return redirect()->route('rol.principal');
+    }
 }

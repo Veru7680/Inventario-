@@ -10,8 +10,11 @@ class Role extends Model
 {
     use HasFactory, SoftDeletes;
 
-    public function users()
-    {
-        return $this->belongsToMany('App\Models\User');
-    }
+    // Define los campos que se pueden asignar masivamente
+    protected $fillable = [
+        'nombre',
+    ];
+
+    // Si estás usando SoftDeletes
+    protected $dates = ['deleted_at'];
 }

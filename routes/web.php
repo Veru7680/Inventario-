@@ -67,19 +67,17 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
     });
     
 
+  
 
-
-
-Route::controller(RolController::class)->group(function () {
-    Route::get('rol', 'principal')->name('rol.principal');
-    Route::get('rol/crear', 'crear')->name('rol.crear');
-    Route::get('rol/{id}', 'mostrar')->name('rol.mostrar');
-    Route::post('rol', 'store')->name('rol.store');
-    Route::get('rol/{id}/editar', 'editar')->name('rol.editar');
-    Route::put('rol/{id}', 'update')->name('rol.update');
-    Route::delete('rol/{id}', 'borrar')->name('rol.borrar');
-    Route::get('rol/{id}/activar', 'activar')->name('rol.activar');
-    Route::get('rol/{id}/desactivar', 'desactivar')->name('rol.desactivar');
-});
-
+    Route::controller(RolController::class)->group(function () {
+        Route::get('rol', 'principal')->name('rol.principal');
+        Route::get('rol/crear', 'crear')->name('rol.crear');
+        Route::get('rol/{id}', 'mostrar')->name('rol.mostrar');
+        Route::post('rol', 'store')->name('rol.store');
+        Route::get('rol/{id}/editar', 'editar')->name('rol.editar');
+        Route::put('rol/{id}', 'update')->name('rol.update');
+        Route::delete('rol/{id}', 'borrar')->name('rol.borrar');
+        Route::get('rol/{id}/activar', 'activar')->name('rol.activar');
+        Route::get('rol/{id}/desactivar', 'desactivar')->name('rol.desactivar');
+    });
     
